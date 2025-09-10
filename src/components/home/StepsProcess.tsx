@@ -1,5 +1,5 @@
 // src/components/StepsProcess.tsx
-import { motion } from "framer-motion";
+import { motion, type Variants, cubicBezier } from "framer-motion";
 import {
   FaGlobeAmericas,
   FaSolarPanel,
@@ -36,19 +36,22 @@ const steps: Step[] = [
   },
 ];
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.15 * i, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      delay: 0.15 * i,
+      duration: 0.6,
+      ease: cubicBezier(0.22, 1, 0.36, 1), // ✅ tip güvenli easing
+    },
   }),
 };
 
 export default function StepsProcess() {
   return (
     <section className="relative overflow-hidden bg-white py-20">
-      {/* dekoratif yapraklar */}
       <div className="pointer-events-none absolute -left-10 top-0 h-64 w-64 opacity-10">
         <LeafPattern />
       </div>
@@ -64,7 +67,6 @@ export default function StepsProcess() {
           Daha Yeşil Bir Gelecek İçin <br /> Karbon Ayak İzini Azalt
         </h2>
 
-        {/* steps grid */}
         <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <motion.div
@@ -76,7 +78,6 @@ export default function StepsProcess() {
               custom={i}
               className="relative flex flex-col items-center text-center"
             >
-              {/* circle with icon */}
               <div className="relative flex size-32 items-center justify-center rounded-full bg-emerald-50 shadow-sm transition hover:shadow-md">
                 {step.icon}
                 <span className="absolute -top-2 -right-2 flex size-8 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white shadow">
@@ -93,7 +94,6 @@ export default function StepsProcess() {
                 </p>
               )}
 
-              {/* dotted arrow except last */}
               {i < steps.length - 1 && (
                 <div className="absolute right-[-55%] top-16 hidden w-[100px] border-t-2 border-dashed border-gray-300 lg:block" />
               )}
@@ -113,7 +113,10 @@ function LeafPattern() {
       className="h-full w-full text-emerald-400"
     >
       <g fill="currentColor">
-        <path d="M100 10c40 25 65 55 65 90s-25 65-65 90c-40-25-65-55-65-90S60 35 100 10z" opacity="0.25" />
+        <path
+          d="M100 10c40 25 65 55 65 90s-25 65-65 90c-40-25-65-55-65-90S60 35 100 10z"
+          opacity="0.25"
+        />
         <circle cx="65" cy="90" r="10" />
         <circle cx="120" cy="55" r="8" />
         <circle cx="135" cy="120" r="12" />
