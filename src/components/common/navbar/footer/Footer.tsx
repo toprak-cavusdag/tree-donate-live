@@ -12,14 +12,14 @@ type NewsItem = { title: string; date: string; image: string; href: string };
 
 const recentNews: NewsItem[] = [
   {
-    title: "Go green and reduce carbon footprint",
-    date: "April 3, 2023",
+    title: "Yeşil ol ve karbon ayak izini azalt",
+    date: "3 Nisan 2023",
     image: "/images/news/leaf.jpg",
     href: "/blog/go-green",
   },
   {
-    title: "Make a statement, support sustainability",
-    date: "April 3, 2023",
+    title: "Bir duruş sergile, sürdürülebilirliği destekle",
+    date: "3 Nisan 2023",
     image: "/images/news/lake.jpg",
     href: "/blog/statement",
   },
@@ -30,7 +30,7 @@ export default function Footer() {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const email = data.get("email");
-    console.log("newsletter:", email);
+    console.log("bülten:", email);
   }, []);
 
   const scrollTop = useCallback(() => {
@@ -43,51 +43,51 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 grid gap-5 md:grid-cols-3">
         <InfoCard
           icon={<FiMapPin />}
-          title="Address"
+          title="Adres"
           desc="2416 Mapleview Drive, FL 33634"
         />
         <InfoCard
           icon={<FiMail />}
-          title="E-mail Address"
+          title="E-posta"
           desc="admin.account@gmail.com"
         />
         <InfoCard
           icon={<FiPhone />}
-          title="Contact Number"
+          title="Telefon"
           desc="+90 212 555 55 55"
         />
       </div>
 
       {/* Orta: 4 kolon */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 grid gap-10 md:grid-cols-4">
-        {/* About */}
+        {/* Hakkımızda */}
         <div>
-          <h4 className="text-2xl font-extrabold tracking-tight mb-4">About Us</h4>
+          <h4 className="text-2xl font-extrabold tracking-tight mb-4">Hakkımızda</h4>
           <p className="text-white/70 leading-relaxed mb-6">
-            We build reliable, scalable digital products—focused on measurable
-            outcomes and long-term partnerships.
+            Güvenilir, ölçeklenebilir dijital ürünler inşa ediyoruz—
+            ölçülebilir sonuçlara ve uzun vadeli iş ortaklıklarına odaklanıyoruz.
           </p>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold shadow-sm transition hover:-translate-y-0.5"
             style={{ backgroundColor: BRAND }}
           >
-            Get Started <FiChevronRight />
+            Başla <FiChevronRight />
           </a>
         </div>
 
-        {/* Quick Links */}
+        {/* Hızlı Linkler */}
         <div>
           <h4 className="text-2xl font-extrabold tracking-tight mb-4">
-            Quick Links
+            Hızlı Linkler
           </h4>
           <ul className="space-y-3 text-white/80">
             {[
-              { label: "About Us", href: "/about" },
-              { label: "Our Mission", href: "/mission" },
-              { label: "Meet The Teams", href: "/team" },
-              { label: "Our Projects", href: "/projects" },
-              { label: "Contact Us", href: "/contact" },
+              { label: "Hakkımızda", href: "/about" },
+              { label: "Misyonumuz", href: "/mission" },
+              { label: "Ekibimiz", href: "/team" },
+              { label: "Projelerimiz", href: "/projects" },
+              { label: "İletişim", href: "/contact" },
             ].map((l) => (
               <li key={l.href}>
                 <a
@@ -105,10 +105,10 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Recent News */}
+        {/* Son Haberler */}
         <div>
           <h4 className="text-2xl font-extrabold tracking-tight mb-4">
-            Recent News
+            Son Haberler
           </h4>
           <ul className="space-y-4">
             {recentNews.map((n) => (
@@ -133,20 +133,20 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Newsletter */}
+        {/* Bülten */}
         <div>
           <h4 className="text-2xl font-extrabold tracking-tight mb-4">
-            Newsletter
+            Bülten
           </h4>
           <p className="text-white/70 mb-4">
-            Stay updated with product news and insights.
+            Ürün haberleri ve içgörülerden haberdar olun.
           </p>
           <form onSubmit={onSubmit} className="flex overflow-hidden rounded-xl">
             <input
               name="email"
               type="email"
               required
-              placeholder="Email Address"
+              placeholder="E-posta adresiniz"
               className="min-w-0 flex-1 bg-white text-[#111] placeholder:text-black/40 px-4 py-3 outline-none"
             />
             <button
@@ -154,7 +154,7 @@ export default function Footer() {
               className="px-5 font-semibold text-white"
               style={{ backgroundColor: BRAND }}
             >
-              Submit
+              Gönder
             </button>
           </form>
         </div>
@@ -164,29 +164,29 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/70">
-            Copyright © {new Date().getFullYear()} All Rights Reserved.
+            Telif Hakkı © {new Date().getFullYear()} Tüm Hakları Saklıdır.
           </p>
 
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
             <a href="/terms" className="hover:text-white">
-              Terms & Conditions
+              Şartlar & Koşullar
             </a>
             <a href="/privacy" className="hover:text-white">
-              Privacy Policy
+              Gizlilik Politikası
             </a>
             <a href="/contact" className="hover:text-white">
-              Contact Us
+              İletişim
             </a>
           </nav>
         </div>
       </div>
 
-      {/* Back to top */}
+      {/* Yukarı dön */}
       <motion.button
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.96 }}
         onClick={scrollTop}
-        aria-label="Back to top"
+        aria-label="Yukarı dön"
         className="fixed bottom-5 right-5 z-50 grid h-10 w-10 place-items-center rounded-lg text-white shadow-lg"
         style={{ backgroundColor: BRAND }}
       >
